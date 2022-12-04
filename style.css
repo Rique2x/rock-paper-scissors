@@ -19,3 +19,60 @@ body{
     display: flex;
     justify-content: center;
 }
+
+.main-container{
+    border: 1px solid;
+    height: 300px;
+    display: flex;
+    
+}
+
+.main-item1{
+    border: 1px solid;
+    height: 300px;
+    width: 650px;
+}
+
+.you{
+    display: flex;
+    justify-content: center;
+}
+
+img {
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    border: 3px solid rgb(125, 125, 207);
+    border-radius: 5px;
+    
+}
+
+.scissor{
+    height: 105px;
+}
+
+.photo{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.p1{
+    font-size: 30px;
+    text-align: center;
+    font-style: italic;
+    margin-top: 25px;
+    border-radius: 5px;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    
+
+}
+
+.p1:hover, .p1:active, .p1:focus{
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+    background-color: rgb(192, 36, 15);
+    
+}
