@@ -3,7 +3,6 @@ body{
 }
 
 .header-container{
-    border: 1px solid;
     display: flex;
     justify-content: center;
 }
@@ -11,6 +10,8 @@ body{
 .header-items{
     font-size: 25px;
     font-style: oblique;
+    font-family: 'Nerko One', cursive;
+
 
 }
 
@@ -20,22 +21,27 @@ body{
     justify-content: center;
 }
 
-.main-container{
-    border: 1px solid;
+.main-container {    
     height: 300px;
     display: flex;
+    flex: 1 1 1 auto;
+    justify-content: center;
     
 }
 
 .main-item1{
-    border: 1px solid;
+    border: 2px solid rgb(55, 55, 241);
     height: 300px;
     width: 650px;
+    flex: 1 1 1 auto;
 }
 
 .you{
     display: flex;
     justify-content: center;
+   font-family: 'Nerko One', cursive;
+    ;
+    
 }
 
 img {
@@ -44,6 +50,7 @@ img {
     flex-direction: column;
     border: 3px solid rgb(125, 125, 207);
     border-radius: 5px;
+    box-shadow: 2px 5px #8888;
     
 }
 
@@ -59,6 +66,7 @@ img {
 }
 
 .p1{
+    font-family: 'Kdam Thmor Pro', sans-serif;
     font-size: 30px;
     text-align: center;
     font-style: italic;
@@ -74,5 +82,13 @@ img {
     -webkit-transform: scale(1.2);
     transform: scale(1.2);
     background-color: rgb(192, 36, 15);
+    box-shadow: 1px 3px rgb(233, 154, 81);
     
+}
+
+.main-item2{
+    border: 2px solid rgb(55, 55, 241);
+    height: 300px;
+    width: 650px;
+   
 }
