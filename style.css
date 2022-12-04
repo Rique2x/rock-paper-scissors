@@ -1,0 +1,21 @@
+body{
+    background: url("https://i.pinimg.com/564x/c9/9a/3a/c99a3a5417efc137ba5471330f7932a4.jpg");
+}
+
+.header-container{
+    border: 1px solid;
+    display: flex;
+    justify-content: center;
+}
+
+.header-items{
+    font-size: 25px;
+    font-style: oblique;
+
+}
+
+.who{
+    line-height: 150px;
+    display: flex;
+    justify-content: center;
+}
