@@ -2,6 +2,7 @@ body{
     background: url("https://i.pinimg.com/564x/c9/9a/3a/c99a3a5417efc137ba5471330f7932a4.jpg");
 }
 
+
 .header-container{
     display: flex;
     justify-content: center;
@@ -16,7 +17,13 @@ body{
 }
 
 
-.moves{
+.movesleft{
+    display: flex;
+    justify-content: center;
+}
+
+
+.result{
     display: flex;
     justify-content: center;
 }
@@ -72,7 +79,7 @@ img {
     margin-top: 50px;
 }
 
-.p1{
+.rock{
     font-family: 'Kdam Thmor Pro', sans-serif;
     font-size: 30px;
     text-align: center;
@@ -85,6 +92,33 @@ img {
 
 }
 
+.paper{
+    font-family: 'Kdam Thmor Pro', sans-serif;
+    font-size: 30px;
+    text-align: center;
+    font-style: italic;
+    margin-top: 25px;
+    border-radius: 5px;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    background-color: rgb(224, 217, 207);    
+
+}
+
+.scissors{
+    font-family: 'Kdam Thmor Pro', sans-serif;
+    font-size: 30px;
+    text-align: center;
+    font-style: italic;
+    margin-top: 25px;
+    border-radius: 5px;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    background-color: rgb(224, 217, 207); 
+
+
+}
+
 .p2{
     font-family: 'Kdam Thmor Pro', sans-serif;
     font-size: 30px;
@@ -94,7 +128,21 @@ img {
     border-radius: 5px;
 }
 
-.p1:hover, .p1:active, .p1:focus{
+.rock:hover, .p1:active, .p1:focus{
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+    background-color: rgb(192, 36, 15);
+    box-shadow: 1px 3px rgb(233, 154, 81);
+    
+}
+.paper:hover, .p1:active, .p1:focus{
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+    background-color: rgb(192, 36, 15);
+    box-shadow: 1px 3px rgb(233, 154, 81);
+    
+}
+.scissors:hover, .p1:active, .p1:focus{
     -webkit-transform: scale(1.2);
     transform: scale(1.2);
     background-color: rgb(192, 36, 15);
@@ -132,4 +180,16 @@ img {
     right: 500px;
     font-size: 30px;
     font-family: 'Kdam Thmor Pro', sans-serif;
+}
+
+.result{
+	margin-top: 20px;
+	font-size: 1.2rem;
+}
+
+.reload{
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    background-color: rgb(250, 168, 60);
 }
