@@ -45,3 +45,22 @@ main{
     font-weight: bolder;
     font-family: 'Courier New', Courier, monospace;
 }
+
+.p-vs-c{
+    font-size: larger;
+    font-weight: bolder;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 70px;
+}
+
+.question-mark{
+    font-size: 90px;
+}
+
+main, p{
+    text-align: center;
+    font-size: 22px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
