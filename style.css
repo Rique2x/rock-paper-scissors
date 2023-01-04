@@ -64,3 +64,98 @@ main, p{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
+.rps{
+    display: flex;
+    margin-top: 50px;
+    justify-content: space-between;
+    gap: 50px;
+    
+}
+
+.rock, .paper, .scissors{
+    border-radius: 5px;
+    font-size: 70px;
+    color: white;
+    width: 150px;
+    background-color: #395757;
+    cursor: pointer;
+}
+
+button{
+    height: 150px;
+    border: 1px solid #395757;
+}
+
+.rock:hover{
+    background-color: #607c7c;
+}
+.paper:hover{
+    background-color: #607c7c;
+}
+.scissors:hover{
+    background-color: #607c7c;
+}
+
+.copyright p{
+     margin-top: 80px;
+     font-family: cursive;
+}
+
+.modal{
+  position: fixed;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  padding: 30px;
+  border-radius: 10px;
+  background-color: var(--primary-dark);
+  text-align: center;
+  font-size: 30px;
+  user-select: none;
+  transform: translate(-50%, -50%) scale(0);
+  transition: 200ms ease-in-out;
+}
+
+.modal.active {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  .modal-title {
+    font-size: 40px;
+    font-weight: bold;
+  }
+
+  
+.restart{
+    padding: 10px 20px;
+    margin-top: 25px;
+    margin-bottom: 15px;
+  }
+
+  @media (max-width: 550px) {
+    .rps-header {
+      font-size: 18px;
+    }
+  
+    .cyw {
+      font-size: 26px;
+    }
+  
+    .rps {
+      gap: 10px;
+    }
+  
+    .rock, .paper, .scissors {
+      width: 100px;
+      height: 100px;
+    }
+  
+    .sign {
+      font-size: 50px;
+    }
+  
+    .modal {
+      width: 95%;
+    }
+  }

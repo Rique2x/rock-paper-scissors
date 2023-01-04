@@ -15,32 +15,66 @@
 </head>
 
 <body>
-    <!--HEADER-->
+    
     <header>
+        <!--HEADER-->
+
         <h1 class="rps-header">ROCK PAPER SCISSORS</h1>
+        
     </header>
 
-   <!--MAIN PART OF THE PAGE-->
     <main>
+        <!--MAIN PART OF THE PAGE-->
+        
         <div class="main-item">
-            <p class="cyw">Choose your weapon</p>
-            <p class="fts">First to score 5 points wins the game</p>
+            <p class="cyw" id="scoreInfo">Choose your weapon</p>
+            <p class="fts" id="scoreMessage">First to score 5 points wins the game</p>
 
             <!--PLAYER VS COMPUTER-->
 
         <div class="p-vs-c">
-            <div id="player">
-                <div class="question-mark">❔</div>
-                <p>Player: 0</p>      
+            <div>
+                <div class="question-mark" id="playerSign">❔</div>
+                <p class="player" id="playerScore">Player: 0</p>      
             </div>
-            <div id="computer">
-                <div class="question-mark">❔</div>
-                <p>Computer: 0</p>
+            <div>
+                <div class="question-mark" id="computerSign">❔</div>
+                <p class="computer" id="computerScore">Computer: 0</p>
             </div>
         </div>
+            
+        <!--ROCK PAPER SCISSOR ICONS-->
+        <div class="rps">
+            <button class="rock" id="rockBtn">
+                <div class="sign"> ✊</div>
+            </button>
+            <button class="paper" id="paperBtn">
+                <div class="sign"> 👋</div>
+            </button>
+            <button class="scissors" id="scissorsBtn">
+                <div class="sign">✌️</div>
+            </button>
         </div>
-        
+
+        <!--COPYRIGHT-->
+        <div class="copyright">
+            <p>Copyright ©
+                <script>
+                    document.write(new Date().getFullYear())
+                    </script>
+                rique_2x</p>
+        </div>
+
+        <!--POP UP END-GAME-->
+        <div class="modal" id="endgameModal">
+            <p class="modal-title" id="endgameMsg"></p>
+            <button class="restart" id="restartBtn">Play again</button>
+        </div>
+        </div>
     </main>
+
+    <script src="script.js"></script>
+
 </body>
 
 </html>
