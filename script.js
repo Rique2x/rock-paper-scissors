@@ -1,72 +1,172 @@
-const container = document.querySelector('#container');
-const userColorPicker = document.querySelector('#input-color');
-const colorButtons = document.querySelectorAll('.featurebutton');
-let color = 'black';
+let playerScore = 0
+let computerScore = 0
+let roundWinner = ''
 
-
-
-function createGrid(gridsize) {
-    for (i = 0; i < gridsize ** 2; i++) {
-        const newDiv = document.createElement('div');
-        newDiv.classList.add('grid');
-        newDiv.style.border = '1px solid black';
-        container.appendChild(newDiv);
-        container.style.gridTemplateColumns = `repeat(${gridsize},1fr)`;
-        container.style.gridTemplateRows = `repeat(${gridsize},1fr)`;
-    }
-    const gridCells = document.querySelectorAll('.grid');
-    gridCells.forEach(cell => cell.addEventListener('mouseover', colorGrid));
+function playRound(playerSelection, computerSelection) {
+  if (playerSelection === computerSelection) {
+    roundWinner = 'tie'
+  }
+  if (
+    (playerSelection === 'ROCK' && computerSelection === 'SCISSORS') ||
+    (playerSelection === 'SCISSORS' && computerSelection === 'PAPER') ||
+    (playerSelection === 'PAPER' && computerSelection === 'ROCK')
+  ) {
+    playerScore++
+    roundWinner = 'player'
+  }
+  if (
+    (computerSelection === 'ROCK' && playerSelection === 'SCISSORS') ||
+    (computerSelection === 'SCISSORS' && playerSelection === 'PAPER') ||
+    (computerSelection === 'PAPER' && playerSelection === 'ROCK')
+  ) {
+    computerScore++
+    roundWinner = 'computer'
+  }
+  updateScoreMessage(roundWinner, playerSelection, computerSelection)
 }
 
-function colorGrid() {
-    switch (color) {
-        case 'rainbow':
-            this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
-            break;
-        case 'gray':
-            this.style.backgroundColor = 'gray';
-            break;
-        case 'eraser':
-            this.style.backgroundColor = 'white';
-            break;
-        default:
-            this.style.background = color;
-    }
-
+function getRandomChoice() {
+  let randomNumber = Math.floor(Math.random() * 3)
+  switch (randomNumber) {
+    case 0:
+      return 'ROCK'
+    case 1:
+      return 'PAPER'
+    case 2:
+      return 'SCISSORS'
+  }
 }
 
-function changeColor(e) {
-    switch (e.target.dataset.color) {
-        case 'rainbow':
-            color = 'rainbow';
-            break;
-        case 'gray':
-            color = 'gray';
-            break;
-        case 'eraser':
-            color = 'eraser';
-            break;
-        default:
-            color = 'black';
-    }
+function isGameOver() {
+  return playerScore === 5 || computerScore === 5
 }
 
-function userSelection(e) {
-    color = e.target.value;
+// UI
+
+const scoreInfo = document.getElementById('scoreInfo')
+const scoreMessage = document.getElementById('scoreMessage')
+const playerScorePara = document.getElementById('playerScore')
+const computerScorePara = document.getElementById('computerScore')
+const playerSign = document.getElementById('playerSign')
+const computerSign = document.getElementById('computerSign')
+const rockBtn = document.getElementById('rockBtn')
+const paperBtn = document.getElementById('paperBtn')
+const scissorsBtn = document.getElementById('scissorsBtn')
+const endgameModal = document.getElementById('endgameModal')
+const endgameMsg = document.getElementById('endgameMsg')
+const overlay = document.getElementById('overlay')
+const restartBtn = document.getElementById('restartBtn')
+
+rockBtn.addEventListener('click', () => handleClick('ROCK'))
+paperBtn.addEventListener('click', () => handleClick('PAPER'))
+scissorsBtn.addEventListener('click', () => handleClick('SCISSORS'))
+restartBtn.addEventListener('click', restartGame)
+overlay.addEventListener('click', closeEndgameModal)
+
+function handleClick(playerSelection) {
+  if (isGameOver()) {
+    openEndgameModal()
+    return
+  }
+
+  const computerSelection = getRandomChoice()
+  playRound(playerSelection, computerSelection)
+  updateChoices(playerSelection, computerSelection)
+  updateScore()
+
+  if (isGameOver()) {
+    openEndgameModal()
+    setFinalMessage()
+  }
 }
 
-function resetGrid() {
-    const reqGridSize = prompt("Enter the number of boxes you want");
+function updateChoices(playerSelection, computerSelection) {
+  switch (playerSelection) {
+    case 'ROCK':
+      playerSign.textContent = '✊'
+      break
+    case 'PAPER':
+      playerSign.textContent = '✋'
+      break
+    case 'SCISSORS':
+      playerSign.textContent = '✌'
+      break
+  }
 
-    if (reqGridSize >= 1 && reqGridSize <= 100) {
-        const gridCells = document.querySelectorAll('.grid');
-        gridCells.forEach(gridCell => gridCell.remove());
-        createGrid(reqGridSize);
-    } else {
-        alert("The boxes should be between 1-100");
-    }
+  switch (computerSelection) {
+    case 'ROCK':
+      computerSign.textContent = '✊'
+      break
+    case 'PAPER':
+      computerSign.textContent = '✋'
+      break
+    case 'SCISSORS':
+      computerSign.textContent = '✌'
+      break
+  }
 }
-window.onload = createGrid(16);
-colorButtons.forEach(colorButton => colorButton.addEventListener('click', changeColor));
-userColorPicker.addEventListener('change', userSelection);
-userColorPicker.addEventListener('input', userSelection);
+
+function updateScore() {
+  if (roundWinner === 'tie') {
+    scoreInfo.textContent = "It's a tie!"
+  } else if (roundWinner === 'player') {
+    scoreInfo.textContent = 'You won!'
+  } else if (roundWinner === 'computer') {
+    scoreInfo.textContent = 'You lost!'
+  }
+
+  playerScorePara.textContent = `Player: ${playerScore}`
+  computerScorePara.textContent = `Computer: ${computerScore}`
+}
+
+function updateScoreMessage(winner, playerSelection, computerSelection) {
+  if (winner === 'player') {
+    scoreMessage.textContent = `${capitalizeFirstLetter(
+      playerSelection
+    )} beats ${computerSelection.toLowerCase()}`
+    return
+  }
+  if (winner === 'computer') {
+    scoreMessage.textContent = `${capitalizeFirstLetter(
+      playerSelection
+    )} is beaten by ${computerSelection.toLowerCase()}`
+    return
+  }
+
+  scoreMessage.textContent = `${capitalizeFirstLetter(
+    playerSelection
+  )} ties with ${computerSelection.toLowerCase()}`
+}
+
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase()
+}
+
+function openEndgameModal() {
+  endgameModal.classList.add('active')
+  overlay.classList.add('active')
+}
+
+function closeEndgameModal() {
+  endgameModal.classList.remove('active')
+  overlay.classList.remove('active')
+}
+
+function setFinalMessage() {
+  return playerScore > computerScore
+    ? (endgameMsg.textContent = 'You won!')
+    : (endgameMsg.textContent = 'You lost...')
+}
+
+function restartGame() {
+  playerScore = 0
+  computerScore = 0
+  scoreInfo.textContent = 'Choose your weapon'
+  scoreMessage.textContent = 'First to score 5 points wins the game'
+  playerScorePara.textContent = 'Player: 0'
+  computerScorePara.textContent = 'Computer: 0'
+  playerSign.textContent = '❔'
+  computerSign.textContent = '❔'
+  endgameModal.classList.remove('active')
+  overlay.classList.remove('active')
+}
