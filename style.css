@@ -153,6 +153,9 @@ transition: 200ms ease-in-out;
   display: block;
 }
 
+/*MOBILE VERSION*/
+
+
 @media (max-width: 550px) {
   .rps-header {
     font-size: 18px;
